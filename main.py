@@ -1,5 +1,34 @@
 from console_clear import ConsoleClear
 
+def playing_the_game(player_name):    
+    global player
+    
+    selected_field = input(f'\n{player_name} player --> Select a field: ')
+    if len(selected_field) == 1:
+        if field[int(selected_field)] != 'O' and field[int(selected_field)] != 'X':
+        
+            try:
+                if player_name == 'A':
+                    field[int(selected_field)] = 'O'    
+                else: 
+                    field[int(selected_field)] = 'X'              
+            except:
+                ConsoleClear()
+                print('Use only valid digit!\n')
+            else:
+                
+                if player_name == 'A':
+                    player = 'B'
+                else:
+                    player = 'A'
+                ConsoleClear()
+        else:
+            ConsoleClear()
+            print('Field is already used. Choose another field!\n') 
+    else:
+        ConsoleClear()
+        print('Use only valid digit!\n')
+
 ConsoleClear()
 
 field = {
@@ -15,7 +44,7 @@ field = {
 }
 
 game_is_on = True
-player = 'a'
+player = 'A'
 
 while game_is_on:
 
@@ -25,42 +54,7 @@ while game_is_on:
     print('-----------')
     print(f' {field[7]} | {field[8]} | {field[9]} ')
     
-    if player == 'a':
-        selected_field_a = input('\nA player --> Select a field: ')
-        if len(selected_field_a) == 1:
-            if field[int(selected_field_a)] != 'O' and field[int(selected_field_a)] != 'X':
-            
-                try:
-                    field[int(selected_field_a)] = 'O'
-                    player = 'b'
-                    ConsoleClear()
-                except:
-                    ConsoleClear()
-                    print('Use only valid digit!\n')
-            else:
-                ConsoleClear()
-                print('Field is already used. Choose another field!\n') 
-        else:
-            ConsoleClear()
-            print('Use only valid digit!\n')
+    if player == 'A':
+        playing_the_game(player)
     else:
-        selected_field_b = input('\nB player --> Select a field: ')
-        if len(selected_field_b) == 1:
-            if field[int(selected_field_b)] != 'O' and field[int(selected_field_b)] != 'X':
-                
-                try:
-                    field[int(selected_field_b)] = 'X'
-                    player = 'a'
-                    ConsoleClear()
-                except:
-                        ConsoleClear()
-                        print('Use only valid digit!\n')
-            else:
-                ConsoleClear()
-                print('Field is already used. Choose another field!\n') 
-        else:
-            ConsoleClear()
-            print('Use only valid digit!\n')
-    
-
-    
+        playing_the_game(player)
