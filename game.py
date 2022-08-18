@@ -49,47 +49,53 @@ class Game:
     
             selected_field = input(f'\n{self.player_name} player --> Select a field: ')
             if len(selected_field) == 1 and selected_field != '0':
-                if field[int(selected_field)] != 'O' and field[int(selected_field)] != 'X':
-                    try:
-                        if self.player_name == 'A':
-                            field[int(selected_field)] = 'O'    
-                        else: 
-                            field[int(selected_field)] = 'X'              
-                    except:
-                        ConsoleClear()
-                        print('Use only valid digit!\n')
-                    else:
-                        ConsoleClear()
-                        refresh_the_field()
-                        check = CheckResult(field=field, player_name=self.player_name, counter=count)
-                        game_over = check.result()
-                        
-                        if game_over == 'winner' or game_over == 'draw':
-                            if game_over == 'winner':
-                                if self.player_name == 'A':
-                                    a_score += 1
-                                else:
-                                    b_score += 1
-                            
+                try:
+                    field[int(selected_field)]
+                except:
+                    ConsoleClear()
+                    print('Use only valid digit!\n')
+                else:
+                    if field[int(selected_field)] != 'O' and field[int(selected_field)] != 'X':
+                        try:
+                            if self.player_name == 'A':
+                                field[int(selected_field)] = 'O'    
+                            else: 
+                                field[int(selected_field)] = 'X'              
+                        except:
+                            ConsoleClear()
+                            print('Use only valid digit!\n')
+                        else:
                             ConsoleClear()
                             refresh_the_field()
-                            check.result()
-                            continue_the_game = input("\nDo you want to countinue the game? Type 'yes' or 'no': ").lower()
+                            check = CheckResult(field=field, player_name=self.player_name, counter=count)
+                            game_over = check.result()
                             
-                            if continue_the_game != 'yes':
-                                game_is_on = False
-                            else:
+                            if game_over == 'winner' or game_over == 'draw':
+                                if game_over == 'winner':
+                                    if self.player_name == 'A':
+                                        a_score += 1
+                                    else:
+                                        b_score += 1
+                                
                                 ConsoleClear()
-                                reset_field()
-                                count = 0
+                                refresh_the_field()
+                                check.result()
+                                continue_the_game = input("\nDo you want to countinue the game? Type 'yes' or 'no': ").lower()
+                                
+                                if continue_the_game != 'yes':
+                                    game_is_on = False
+                                else:
+                                    ConsoleClear()
+                                    reset_field()
+                                    count = 0
+                                    change_player()
+                            else: 
+                                count += 1
                                 change_player()
-                        else: 
-                            count += 1
-                            change_player()
-                            ConsoleClear()
-                else:
-                    ConsoleClear()
-                    print('Field is already used. Choose another field!\n') 
+                                ConsoleClear()
+                    else:
+                        ConsoleClear()
+                        print('Field is already used. Choose another field!\n') 
             else:
                 ConsoleClear()
                 print('Use only valid digit!\n')
