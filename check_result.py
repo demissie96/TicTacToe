@@ -20,21 +20,3 @@ class CheckResult:
         elif self.counter > 7:
             print('\nDraw!')
             return 'draw'
-    
-     
-                  
-        
-# field = {
-#     1: '1',
-#     2: '2',
-#     3: '3',
-#     4: 'O',
-#     5: 'O',
-#     6: 'O',
-#     7: '7',
-#     8: '8',
-#     9: '9'
-# }     
-
-# test = CheckResult(field=field, player_name='A', counter=8)
-# test.result()

@@ -50,7 +50,6 @@ class Game:
             selected_field = input(f'\n{self.player_name} player --> Select a field: ')
             if len(selected_field) == 1 and selected_field != '0':
                 if field[int(selected_field)] != 'O' and field[int(selected_field)] != 'X':
-                
                     try:
                         if self.player_name == 'A':
                             field[int(selected_field)] = 'O'    
