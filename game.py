@@ -1,5 +1,6 @@
 from console_clear import ConsoleClear
 from check_result import CheckResult
+import ascii_art
 
 class Game:
     
@@ -10,6 +11,7 @@ class Game:
         count = 0
         
         def refresh_the_field():
+            print(ascii_art.logo)
             print(f' {field[1]} | {field[2]} | {field[3]} ')
             print('-----------')
             print(f' {field[4]} | {field[5]} | {field[6]} ')
@@ -27,8 +29,8 @@ class Game:
             field[8] = '8'
             field[9] = '9'
 
-        while game_is_on:     
-            
+        while game_is_on:  
+
             refresh_the_field()
     
             selected_field = input(f'\n{player_name} player --> Select a field: ')
@@ -73,4 +75,4 @@ class Game:
                 print('Use only valid digit!\n')
         
         ConsoleClear()
-        print("Bye!")
+        print(ascii_art.bye)
