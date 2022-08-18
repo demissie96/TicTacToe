@@ -65,14 +65,16 @@ class Game:
                         check = CheckResult(field=field, player_name=self.player_name, counter=count)
                         game_over = check.result()
                         
-                        if game_over:
-                            if self.player_name == 'A':
-                                a_score += 1
-                            else:
-                                b_score += 1
+                        if game_over == 'winner' or game_over == 'draw':
+                            if game_over == 'winner':
+                                if self.player_name == 'A':
+                                    a_score += 1
+                                else:
+                                    b_score += 1
                             
                             ConsoleClear()
                             refresh_the_field()
+                            check.result()
                             continue_the_game = input("\nDo you want to countinue the game? Type 'yes' or 'no': ").lower()
                             
                             if continue_the_game != 'yes':
