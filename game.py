@@ -14,7 +14,18 @@ class Game:
             print('-----------')
             print(f' {field[4]} | {field[5]} | {field[6]} ')
             print('-----------')
-            print(f' {field[7]} | {field[8]} | {field[9]} ')        
+            print(f' {field[7]} | {field[8]} | {field[9]} ')  
+        
+        def reset_field():
+            field[1] = '1'
+            field[2] = '2'
+            field[3] = '3'
+            field[4] = '4'
+            field[5] = '5'
+            field[6] = '6'
+            field[7] = '7'
+            field[8] = '8'
+            field[9] = '9'
 
         while game_is_on:     
             
@@ -39,8 +50,13 @@ class Game:
                         game_over = check.result()
                         
                         if game_over:
-                            print('Game Over')
-                            game_is_on = False
+                            continue_the_game = input("\nDo you want to countinue the game? Type 'yes' or 'no': ").lower()
+                            if continue_the_game != 'yes':
+                                game_is_on = False
+                            else:
+                                ConsoleClear()
+                                reset_field()
+                                count = 0
                         else: 
                             count += 1
                             
@@ -56,4 +72,5 @@ class Game:
                 ConsoleClear()
                 print('Use only valid digit!\n')
         
-        print("Hahaha")
+        ConsoleClear()
+        print("Bye!")
